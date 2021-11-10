@@ -90,15 +90,9 @@
                 background: $bgColor;
                 width: 100%;
                 height: 100%;
-                .right-view-top {
-                    width: 100%;
-                    background: #f2f3f5;
-                    height: 60px;
-                    line-height: 60px;
-                }
                 .layout-content {
                     width: 100%;
-                    height: calc(100vh - 120px);
+                    height: 100%;
                 }
             }
         }

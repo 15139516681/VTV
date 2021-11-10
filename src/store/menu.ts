@@ -4,8 +4,14 @@ const menu = {
     namespaced: true,
     state: {
         menu: menuList,
+        breadcrumb: [],
     },
-    mutations: {},
+    mutations: {
+        // 面包屑
+        breadCrumbPush(state: any, data: any) {
+            state.breadcrumb = data;
+        },
+    },
 };
 
 export default menu;

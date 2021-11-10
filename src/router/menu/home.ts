@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 const home: Array<RouteRecordRaw> = [
     {
         path: '/',
-        component: () => import('@/components/layout/index.vue'),
+        component: () => import('/@/components/layout/index.vue'),
         redirect: '/home',
         meta: {
             title: '仪表盘',
@@ -11,7 +11,7 @@ const home: Array<RouteRecordRaw> = [
             {
                 path: '/home',
                 name: 'home',
-                component: () => import('@/view/home/home.vue'),
+                component: () => import('/@/view/home/home.vue'),
                 meta: {
                     title: '工作台',
                 },
@@ -19,7 +19,7 @@ const home: Array<RouteRecordRaw> = [
             {
                 path: '/monitor',
                 name: 'monitor',
-                component: () => import('@/view/home/monitor.vue'),
+                component: () => import('/@/view/home/monitor.vue'),
                 meta: {
                     title: '实时监控',
                 },

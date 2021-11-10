@@ -1,16 +1,34 @@
 <template>
-	 <a-breadcrumb>
-	    <a-breadcrumb-item>Home</a-breadcrumb-item>
-	    <a-breadcrumb-item>Channel</a-breadcrumb-item>
-	    <a-breadcrumb-item>News</a-breadcrumb-item>
-	  </a-breadcrumb>
+    <div class="breadcrumb"
+         v-if="breadcrumbList.length">
+        <a-breadcrumb>
+            <a-breadcrumb-item v-for="item in breadcrumbList"
+                               :key="item">{{item}}</a-breadcrumb-item>
+        </a-breadcrumb>
+    </div>
 </template>
 
 <script>
-	export default {
-		name:"breadcrumb"
-	}
+    import { computed, defineComponent } from "vue";
+    import { useStore } from 'vuex'
+
+    export default defineComponent({
+        setup() {
+            const store = useStore();
+            const breadcrumbList = computed(() => store.state.menu.breadcrumb);
+
+            return {
+                breadcrumbList
+            }
+        }
+    })
 </script>
 
-<style>
+<style lang="scss" scoped>
+    .breadcrumb {
+        width: 100%;
+        background: #f2f3f5;
+        height: 60px;
+        line-height: 60px;
+    }
 </style>

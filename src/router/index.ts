@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import menu from './menu/menu';
-import layout from '@/components/layout/index.vue';
+import layout from '/@/components/layout/index.vue';
 const routes: Array<RouteRecordRaw> = [
     {
         path: '',
@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
             {
                 path: '/index',
                 name: 'index',
-                component: () => import('@/view/index/index.vue'),
+                component: () => import('/@/view/index/index.vue'),
                 meta: {
                     title: '首页',
                 },

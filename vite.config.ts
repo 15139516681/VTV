@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { createSvg } from './src/components/svgIcon/index';
-import path from 'path';
+import { resolve } from 'path';
+function pathResolve(dir: string) {
+    return resolve(process.cwd(), '.', dir);
+}
 
 export default defineConfig({
     css: {
@@ -13,9 +16,12 @@ export default defineConfig({
     },
     plugins: [vue(), createSvg('./src/assets/svg/')],
     resolve: {
-        alias: {
-            '@': path.resolve(__dirname, 'src'),
-        },
+        alias: [
+            {
+                find: /\/@\//,
+                replacement: pathResolve('src') + '/',
+            },
+        ],
     },
 
     base: './',

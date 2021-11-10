@@ -5,6 +5,7 @@
                   @click="btn">Primary</a-button>
         <svg-icon name="file"></svg-icon>
         <svg-icon name="hospital"></svg-icon>
+
     </div>
 </template>
 
@@ -13,7 +14,6 @@
     import { useStore } from 'vuex';
     export default defineComponent({
         components: {},
-        name: 'home',
         setup() {
             const store = useStore();
 
