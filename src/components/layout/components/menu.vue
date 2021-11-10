@@ -7,10 +7,11 @@
                 :default-open-keys="['/']"
                 :default-selected-keys="['/home']"
                 @menu-item-click="routerPath">
-
+            <!-- 首页 -->
             <a-menu-item key="/index">
                 <icon-apps /> 首页
             </a-menu-item>
+            <!-- 循环路由数组 -->
             <a-sub-menu v-for="item in menuList"
                         :key="item.path">
                 <template #title>
@@ -23,56 +24,15 @@
     </div>
 </template>
 <script lang="ts">
-    import { ref, reactive } from 'vue';
-
+    import { ref, reactive, toRefs, computed } from 'vue';
     import { useRoute, useRouter } from 'vue-router';
-    import {
-        IconMenuFold,
-        IconMenuUnfold,
-        IconApps,
-        IconBug,
-        IconBulb,
-    } from '@arco-design/web-vue/es/icon';
-
+    import { useStore } from 'vuex';
     export default {
-        components: {
-            IconMenuFold,
-            IconMenuUnfold,
-            IconApps,
-            IconBug,
-            IconBulb,
-        },
         setup() {
             const $route = useRouter();
-            let menuList = reactive([
-                {
-                    path: '/',
-                    meta: { title: '首页' },
-                    children: [
-                        {
-                            path: '/home',
-                            name: 'home',
-                            meta: { title: '首页' },
-                        },
-                    ],
-                },
-                {
-                    path: '/monitor',
-                    meta: {
-                        title: '订单',
-                    },
-                    children: [
-                        {
-                            path: '/monitor',
-                            name: '/monitor',
-                            meta: {
-                                title: '订单页面',
-                            },
-                        },
-                    ],
-                },
-            ]);
-
+            const store = useStore();
+            // 获取菜单栏
+            let menuList = computed(() => store.state.menu.menu);
             /**
              * 点击被折叠的菜单触发
              */

@@ -84,9 +84,12 @@
             display: flex;
             align-items: flex-start;
             justify-content: flex-start;
+            flex-wrap: nowrap;
             .right-view {
                 margin: 0 20px;
                 background: $bgColor;
+                width: 100%;
+                height: 100%;
                 .right-view-top {
                     width: 100%;
                     background: #f2f3f5;
@@ -95,7 +98,7 @@
                 }
                 .layout-content {
                     width: 100%;
-                    height: 100%;
+                    height: calc(100vh - 120px);
                 }
             }
         }

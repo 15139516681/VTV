@@ -1,26 +1,26 @@
 <template>
     <div class="home">
-        <div class="home">{{ sex }}</div>
-     <a-button type="primary">Primary</a-button>
+        <div class="home">{{ sex }} wwwwww {{age}}</div>
+        <a-button type="primary"
+                  @click="btn">Primary</a-button>
+        <svg-icon name="file"></svg-icon>
+        <svg-icon name="hospital"></svg-icon>
     </div>
 </template>
 
 <script lang="ts">
-    import { defineComponent, ref, reactive } from 'vue';
-    import { getTopics } from '../../api/index';
+    import { defineComponent, ref, reactive, toRefs } from 'vue';
+    import { useStore } from 'vuex';
     export default defineComponent({
         components: {},
         name: 'home',
         setup() {
-            let sex = ref(1);
-            let age = reactive([
-                { name: '张三', age: 21 },
-                { name: '李四', age: 22 },
-            ]);
+            const store = useStore();
+
+            let { count: sex } = toRefs(store.state.home);
+            let { age } = toRefs(store.state.monitior);
             const btn = () => {
-                getTopics({ page: 1, limit: 10 }).then((res) => {
-                    console.log(res, '----res');
-                });
+                store.commit('home/increments');
             };
             return {
                 sex,
