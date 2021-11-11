@@ -18,7 +18,7 @@ function svgFind(e: any): any[] {
                 .replace(svgTitle, ($1, $2) => {
                     let width = 0,
                         height = 0,
-                        content = $2.replace(clearHeightWidth, (s1, s2, s3) => {
+                        content = $2.replace(clearHeightWidth, (s1: any, s2: any, s3: any) => {
                             if (s2 === 'width') width = s3;
                             else if (s2 === 'height') height = s3;
                             return '';

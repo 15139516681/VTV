@@ -9,14 +9,13 @@
 </template>
 
 <script>
-    import { computed, defineComponent } from "vue";
+    import { computed, defineComponent, onMounted } from "vue";
     import { useStore } from 'vuex'
 
     export default defineComponent({
         setup() {
             const store = useStore();
             const breadcrumbList = computed(() => store.state.menu.breadcrumb);
-
             return {
                 breadcrumbList
             }

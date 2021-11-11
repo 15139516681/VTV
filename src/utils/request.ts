@@ -1,7 +1,7 @@
 import AxiosManager, { AxiosRequestConfig } from 'super-axios';
 const service = new AxiosManager(
     {
-        baseURL: 'https://cnodejs.org/api/v1',
+        baseURL: '',
         timeout: 3000,
         withCredentials: false,
     },

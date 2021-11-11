@@ -3,8 +3,13 @@ import menu from './menu/menu';
 import layout from '/@/components/layout/index.vue';
 const routes: Array<RouteRecordRaw> = [
     {
-        path: '',
-        name: '',
+        path: '/login',
+        name: 'login',
+        component: () => import('/@/view/login/index.vue'),
+    },
+    {
+        path: '/index',
+        name: 'index',
         component: layout,
         children: [
             {
@@ -17,7 +22,6 @@ const routes: Array<RouteRecordRaw> = [
             },
         ],
     },
-
     ...menu,
 ];
 const router = createRouter({

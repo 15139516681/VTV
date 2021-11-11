@@ -13,7 +13,8 @@
                 <icon-sun-fill :style="{ fontSize: '30px', color: '#FFD700'}"></icon-sun-fill>
                 <div class="layout-header-user-message">
                     <a-avatar :style="{backgroundColor: '#14a9f8'}">
-                        <icon-heart-fill :style="{color: '#F53F3F'}"></icon-heart-fill>
+                        <icon-heart-fill :style="{color: '#F53F3F'}"
+                                         @click="quit"></icon-heart-fill>
                     </a-avatar>
                     <span class="layout-header-user-name">张亚辉</span>
                 </div>
@@ -40,12 +41,27 @@
     import { defineComponent, reactive, ref } from 'vue';
     import Menu from './components/menu.vue';
     import breadCrumb from './components/breadcrumb.vue';
+    import { useRouter } from 'vue-router';
     export default defineComponent({
         components: {
             Menu,
             breadCrumb,
         },
-        setup() {},
+        setup() {
+            const router = useRouter();
+
+            /**
+             * 退出
+             */
+            const quit = () => {
+                localStorage.removeItem('Token');
+                router.push({ path: '/login' });
+            };
+
+            return {
+                quit,
+            };
+        },
     });
 </script>
 <style lang="scss" scoped>
@@ -64,6 +80,7 @@
             left: 0;
             z-index: 99;
             background: #fff;
+            box-sizing: border-box;
             &-logo {
                 height: 60px;
             }
