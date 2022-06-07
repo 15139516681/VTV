@@ -6,6 +6,7 @@ const home: Array<RouteRecordRaw> = [
         redirect: '/home',
         meta: {
             title: '仪表盘',
+            icon: 'BookIcon',
         },
         children: [
             {

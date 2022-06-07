@@ -2,20 +2,20 @@
     <div class="frame-work">
         <div class="layout-header flex-x-space-between">
             <div class="layout-header-logo flex-x-space-between">
-                <a-space size="medium"
+                <n-space size="medium"
                          align="center">
-                    <icon-bytedance-color :style="{fontSize:'32px'}"
+                    <icon-bytedance-color :style="{ fontSize: '32px' }"
                                           spin />
                     <span class="layout-header-title">TiTok</span>
-                </a-space>
+                </n-space>
             </div>
             <div class="layout-header-user flex-x-start">
-                <icon-sun-fill :style="{ fontSize: '30px', color: '#FFD700'}"></icon-sun-fill>
+                <icon-sun-fill :style="{ fontSize: '30px', color: '#FFD700' }"></icon-sun-fill>
                 <div class="layout-header-user-message">
-                    <a-avatar :style="{backgroundColor: '#14a9f8'}">
-                        <icon-heart-fill :style="{color: '#F53F3F'}"
+                    <n-avatar :style="{ backgroundColor: '#14a9f8' }">
+                        <icon-heart-fill :style="{ color: '#F53F3F' }"
                                          @click="quit"></icon-heart-fill>
-                    </a-avatar>
+                    </n-avatar>
                     <span class="layout-header-user-name">张亚辉</span>
                 </div>
             </div>
@@ -31,7 +31,6 @@
                 <div class="layout-content">
                     <router-view />
                 </div>
-
             </div>
         </div>
     </div>
@@ -49,7 +48,6 @@
         },
         setup() {
             const router = useRouter();
-
             /**
              * 退出
              */

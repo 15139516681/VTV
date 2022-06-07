@@ -1,64 +1,64 @@
 <template>
     <div id="login">
-        <a-form ref="formlogin"
+        <n-form ref="formlogin"
                 class="form-table"
-                @submit="submitHandle"
                 :model="form">
-            <a-form-item label="账号"
-                         field="user"
-                         :rules="[{required:true,message:'请输入账号', trigger: 'blur'}]"
-                         :maxLength="16"
-                         :minLength="6">
-                <a-input class="input-width"
-                         v-model="form.user"
-                         placeholder="请输入账号"></a-input>
-            </a-form-item>
-            <a-form-item label="密码"
-                         field="password"
-                         :rules="[{required: true,message:'请输入密码', trigger:'blur'}]">
-                <a-input-password class="input-width"
-                                  v-model="form.password"
-                                  placeholder="请输入密码"
-                                  :maxLength="16"
-                                  :minLength="6"></a-input-password>
-            </a-form-item>
-            <a-form-item>
-                <a-button type="primary"
-                          html-type="submit"
-                          class="login-btn">登录</a-button>
-            </a-form-item>
-        </a-form>
-
+            <n-form-item label="账号"
+                         path="user"
+                         :rule="[{ required: true, message: '请输入账号', trigger: 'blur' }]">
+                <n-input class="input-width"
+                         v-model:value="form.user"
+                         placeholder="请输入账号"></n-input>
+            </n-form-item>
+            <n-form-item label="密码"
+                         path="passWord"
+                         :rule="[{ required: true, message: '请输入密码', trigger: 'blur' }]">
+                <n-input class="input-width"
+                         type="password"
+                         v-model:value="form.passWord"
+                         placeholder="请输入密码"></n-input>
+            </n-form-item>
+            <n-form-item>
+                <n-button type="primary"
+                          class="login-btn"
+                          @click="submitHandle">登录</n-button>
+            </n-form-item>
+        </n-form>
     </div>
 </template>
 
 <script lang="ts">
     import { defineComponent, reactive, ref } from 'vue';
     import { useRouter } from 'vue-router';
-
-    import { Message } from '@arco-design/web-vue';
+    import { login } from '/@/api/login';
     export default defineComponent({
         setup() {
-            const form: any = reactive({
-                user: '',
-                password: '',
-            });
-
+            // 引入路由
             const router = useRouter();
+            // 登录
+            const form: { user: string; passWord: string } = reactive({
+                user: '15139516681',
+                passWord: '123456',
+            });
+            //获取表单Dom;
+            const formlogin = ref(null);
 
             // 触发提交表单
-            const submitHandle = ({ values, errors }: any) => {
-                if (!errors) {
-                    console.log('打印form数据', form);
-                    Message.success('登录成功');
-                    localStorage.setItem('Token', 'true');
-                    router.push({ name: 'index' });
-                }
+            const submitHandle = () => {
+                (formlogin.value as any).validate((errors: any) => {
+                    if (!errors) {
+                        login(form).then((res: any) => {
+                            localStorage.setItem('Token', res.token);
+                            router.push({ name: 'index' });
+                        });
+                    }
+                });
             };
 
             return {
                 submitHandle,
                 form,
+                formlogin,
             };
         },
     });

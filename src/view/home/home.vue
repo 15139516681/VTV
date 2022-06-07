@@ -11,17 +11,16 @@
 
 <script lang="ts">
     import { defineComponent, ref, reactive, toRefs } from 'vue';
+    import { login } from '/@/api/login';
     import { useStore } from 'vuex';
     export default defineComponent({
         components: {},
         setup() {
             const store = useStore();
-
             let { count: sex } = toRefs(store.state.home);
             let { age } = toRefs(store.state.monitior);
-            const btn = () => {
-                store.commit('home/increments');
-            };
+            const btn = () => {};
+
             return {
                 sex,
                 age,
